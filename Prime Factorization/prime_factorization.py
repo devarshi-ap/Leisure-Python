@@ -1,17 +1,26 @@
-# prime factorization
+# Prime Factorization
 
-def isPrime(num):
-    for i in range(2, int(num ** 0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
+factors = lambda n: [x for x in range(1, n + 1) if not n % x]
+isPrime = lambda n: len(factors(n)) == 2
+primefactors = lambda n: list(filter(isPrime, factors(n)))
 
 
-userNum = int(input("Prime Factorization\n\nEnter a number to find all prime factors: "))
-primeFactors = []
+def primeFactorize(n):
+    n = int(n)
+    f = primefactors(n)
+    if isPrime(n):
+        return str(n)
+    else:
+        return str(f[0]) + "*" + primeFactorize(n / f[0])
 
-for i in range(1,userNum+1):
-    if userNum % i == 0 and isPrime(i):
-        primeFactors.append(i)
 
-print("Here are all the prime factors of {}: \t{}".format(userNum, primeFactors))
+print("Welcome to the Prime Factorizer\nEnter a number or enter 'quit' to exit")
+num = 0;
+
+while True:
+    if num:
+        print(primeFactorize(num))
+    print(">>>", end='')
+    num = input()
+    if num == "quit":
+        break
