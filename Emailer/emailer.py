@@ -12,12 +12,12 @@ with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
     # reidentifies encrypted local
     smtp.ehlo()
 
-    # my email and password
-    smtp.login('devarshi.ap@gmail.com', 'Mahadev1109')
+    # email and password for gmail or yahoo or whtvr emailing service you use. This program is tailored for gmail
+    smtp.login('sender_email', 'sender_email_password')
 
     subject = "Dat Nigerian Prince"
     body = "I'm sending this from a python script on pycharm. SMTP test!!!"
     msg = f'Subject: {subject}\n\n{body}'
 
     # (sender, receiver, message)
-    smtp.sendmail('devarshi.ap@gmail.com', 'crownthebat@gmail.com', msg)
+    smtp.sendmail('sender_email', 'receiver_email', msg)
