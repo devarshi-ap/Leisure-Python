@@ -7,8 +7,8 @@ from email.message import EmailMessage
 
 msg = EmailMessage()
 msg['Subject'] = "Check out this radical pic Bro!"
-msg['From'] = 'devarshi.ap@gmail.com'
-msg['To'] = 'crownthebat@gmail.com'
+msg['From'] = 'sender_email'
+msg['To'] = 'receiver_email'
 msg.set_content("Image attached...")
 
 
@@ -19,7 +19,7 @@ to send multiple files, make array of file PATHs strings & iterate thru it
 via for loop and replace the x in open(x, r) with the loop variable.
 """
 
-with open("C:\\Users\Amit\Pictures\Saved Pictures\Kanyay.png", "rb") as f:
+with open("file_PATH", "rb") as f:
     file_data = f.read()
     file_type = imghdr.what(f.name)
     file_name = f.name
@@ -29,5 +29,5 @@ msg.add_attachment(file_data, maintype='image', subtype=file_type, filename=file
 
 # using smtp_ssl connection, you can remove the ehlo() and starttls()
 with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-    smtp.login('devarshi.ap@gmail.com', 'Mahadev1109')
+    smtp.login('sender_email', 'sender_email_password')
     smtp.send_message(msg)
